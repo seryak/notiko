@@ -1,12 +1,11 @@
 <template>
   <div>
-<!--    <div v-if="!isEditing" class="note" @dblclick="editNote" v-html="markdownToHtml(noteContent)" />-->
     <div v-if="!isEditing" @dblclick="editNote">
-      <v-md-preview-html :html="markdownToHtml(noteContent)" preview-class="vuepress-markdown-body"></v-md-preview-html>
+      <v-md-preview-html :html="markdownToHtml(note.content)" preview-class="vuepress-markdown-body"></v-md-preview-html>
     </div>
-    <v-md-editor v-else v-model="noteContent" @blur="saveNote" />
-
+    <v-md-editor v-else v-model="note.content" @blur="saveNote" />
   </div>
+  <hr>
 </template>
 
 <script>
@@ -22,6 +21,13 @@ VMdEditor.lang.use('ru-RU', ru);
 
 
 export default {
+  name: 'Note',
+  props: {
+    note: {
+      type: Array,
+      required: true
+    }
+  },
   components: {
     VMdEditor,
     VMdPreviewHtml

@@ -9,7 +9,8 @@ class NoteController extends Controller
 {
     public function index()
     {
-        return Note::all();
+        $notes = Note::all();
+        return view('index', compact('notes'));
     }
 
     public function store(Request $request)

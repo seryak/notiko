@@ -1,10 +1,10 @@
 import './bootstrap';
 import { createApp } from 'vue';
-import NoteEditor from './components/NoteEditor.vue';
+import Note from './components/Note.vue';
 
 
 const app = createApp({
     components: {
-        NoteEditor
+        Note
     }
 }).mount('#app');
