@@ -41,15 +41,33 @@ export default {
   data() {
     return {
       isEditing: false,
-      noteContent: 'Заметка 2',
     };
   },
   methods: {
     editNote() {
       this.isEditing = true;
     },
-    saveNote() {
+    async saveNote() {
       this.isEditing = false;
+      try {
+        await this.updateNote();
+      } catch (error) {
+        console.error('Error updating note:', error);
+      }
+    },
+    async updateNote() {
+      const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      const response = await fetch(`/notes/${this.note.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': csrfToken,
+        },
+        body: JSON.stringify({ content: this.note.content }),
+      });
+      if (!response.ok) {
+        throw new Error('Failed to update note');
+      }
     },
     markdownToHtml(markdown) {
       const md = new MarkdownIt();
