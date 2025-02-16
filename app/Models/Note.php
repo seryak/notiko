@@ -2,25 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Note extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'title',
         'content',
-        'note_type',
+        'type',
     ];
 
-    public function categories()
+    public function categories(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Category::class);
     }
 
-    public function tags()
+    public function tags(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
     }

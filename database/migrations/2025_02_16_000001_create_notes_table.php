@@ -12,7 +12,7 @@ class CreateNotesTable extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->text('content');
-            $table->string('note_type')->nullable();
+            $table->string('type')->nullable();
             $table->timestamps();
         });
     }
