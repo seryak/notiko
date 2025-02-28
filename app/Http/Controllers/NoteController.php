@@ -21,7 +21,12 @@ class NoteController extends Controller
 
     public function show(Note $note)
     {
-        return $note;
+        return response()->json([
+            'id' => $note->id,
+            'content' => $note->content,
+            'created_at' => $note->created_at->format('d.m.Y H:i'),
+            'updated_at' => $note->updated_at->format('d.m.Y H:i')
+        ]);
     }
 
     public function update(Request $request, Note $note)
