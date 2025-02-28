@@ -12,7 +12,6 @@ body.interstitial .popup {
     right: 0;
     background: rgba(255, 255, 255, 0.85);
     z-index: 999;
-    overflow-y: scroll;
 }
 
 body.interstitial .popup > .content {
@@ -20,17 +19,29 @@ body.interstitial .popup > .content {
     position: relative;
     transform: scale(0.85);
     color: #333;
+    border: 1px solid #8a2121;
+    background-color: #fdfdfe;
+    max-height: 96%;
+    overflow: scroll;
+    width: 100%;
+    max-width: 1200px;
+}
+
+body.interstitial .popup > .content > .popup-content {
+    padding: 8px;
 }
 
 body.interstitial .popup > .content .close {
     position: absolute;
     top: 0;
-    right: 0;
+    right: 6px;
     cursor: pointer;
     border: 0;
     outline: 0;
     background: none;
     color: #bbbbbb;
+    font-size: 48px;
+    line-height: 36px;
 }
 
 body.interstitial .popup > .content .close:hover {
